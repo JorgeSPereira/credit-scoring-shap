@@ -161,15 +161,14 @@ O módulo `cost_analysis.py` encontra o **threshold ótimo** que maximiza lucro.
 
 ## Foundation Models Comparison
 
-Este projeto também explora **Foundation Models** para dados tabulares, comparando performance vs interpretabilidade.
+Este projeto explora **Foundation Models** para dados tabulares, comparando performance vs interpretabilidade.
 
-### Modelos Avaliados
+### Resultados
 
-| Modelo | Tipo | Performance | Interpretabilidade |
-|--------|------|-------------|-------------------|
-| **XGBoost + SHAP** | Gradient Boosting | Boa | Excelente |
-| **TabPFN** | Transformer pre-treinado | Excelente | Limitada |
-| **MITRA** (AutoGluon) | Foundation Model | State-of-the-art | Limitada |
+| Modelo | ROC-AUC | PR-AUC | Interpretabilidade |
+|--------|---------|--------|-------------------|
+| **TabPFN** | **0.814** | **0.668** | Limitada |
+| XGBoost + SHAP | 0.806 | 0.633 | Excelente |
 
 ### Trade-off: Performance vs Explicabilidade
 
@@ -178,10 +177,11 @@ Este projeto também explora **Foundation Models** para dados tabulares, compara
 | Cenário | Modelo Recomendado |
 |---------|-------------------|
 | Produção (regulado) | XGBoost + SHAP |
-| Prototipo/PoC | TabPFN/MITRA |
-| Benchmark interno | Comparar todos |
+| Prototipo/PoC | TabPFN |
 
 Para detalhes, veja: `notebooks/05_foundation_models.ipynb`
+
+
 
 
 
