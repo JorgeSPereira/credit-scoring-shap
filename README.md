@@ -23,6 +23,35 @@
 | **Fairlearn** | Análise de viés e equidade |
 | **Pandera** | Validação de dados |
 | **CI/CD** | GitHub Actions para testes automatizados |
+| **TabPFN** | Foundation Model para benchmark |
+
+---
+
+## Exemplo: Justificativa para Cliente
+
+O modelo gera explicações em português para cada decisão de crédito:
+
+```json
+// Crédito NEGADO
+{
+  "decision": "NEGADO",
+  "probability_default": 78.1,
+  "risk_level": "ALTO",
+  "main_factors": [
+    {"feature": "Status da conta corrente", "impact": "aumenta risco"},
+    {"feature": "Tipo de moradia", "impact": "aumenta risco"}
+  ],
+  "summary": "Credito NEGADO. Nivel de risco: ALTO. Principal fator: Status da conta corrente."
+}
+
+// Crédito APROVADO
+{
+  "decision": "APROVADO",
+  "probability_default": 22.2,
+  "risk_level": "BAIXO",
+  "summary": "Credito APROVADO! Seu perfil foi avaliado positivamente."
+}
+```
 
 ---
 
@@ -339,8 +368,7 @@ Este projeto está sob a licença MIT.
 
 ## Autor
 
-**Jorge** - Cientista de Dados
+**Jorge Silva Pereira** - Analista de Dados
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/seu-perfil)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/seu-usuario)
-
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/jorgepereira-/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/JorgeSPereira)
