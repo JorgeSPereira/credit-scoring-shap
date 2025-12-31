@@ -130,11 +130,32 @@ flowchart LR
 
 ## Resultados
 
-| Modelo | ROC-AUC | Precision | Recall | F1-Score |
-|--------|---------|-----------|--------|----------|
-| Logistic Regression | **0.806** | 0.537 | 0.720 | 0.658 |
-| XGBoost (Optuna) | 0.781 | **0.560** | 0.589 | 0.573 |
-| LightGBM (Optuna) | 0.782 | 0.545 | 0.600 | 0.581 |
+### Métricas de Performance
+
+| Modelo | ROC-AUC | PR-AUC | F1-Score |
+|--------|---------|--------|----------|
+| TabPFN (Foundation) | **0.814** | 0.65 | 0.577 |
+| XGBoost (Optuna) | 0.806 | 0.633 | 0.658 |
+| LightGBM (Optuna) | 0.782 | 0.61 | 0.581 |
+
+### Por que múltiplas métricas?
+
+| Métrica | O que mede | Quando usar |
+|---------|-----------|-------------|
+| **ROC-AUC** | Capacidade discriminativa geral | Dataset moderadamente desbalanceado |
+| **PR-AUC** | Precision-Recall trade-off | Quando classe positiva é rara |
+| **F1-Score** | Equilíbrio precision/recall | Decisões com threshold fixo |
+
+### Análise de Custo (Cost-Sensitive)
+
+Em credit scoring, os custos são **assimétricos**:
+
+| Erro | Custo típico | Impacto |
+|------|--------------|---------|
+| **FN** (emprestar para mau) | -R$1000 | Perde o principal |
+| **FP** (negar para bom) | -R$200 | Perde margem |
+
+O módulo `cost_analysis.py` encontra o **threshold ótimo** que maximiza lucro.
 
 ---
 
