@@ -47,6 +47,32 @@ A concessão de crédito é uma das decisões mais críticas em instituições f
 
 ---
 
+## Foundation Models Comparison
+
+Este projeto também explora **Foundation Models** para dados tabulares, comparando performance vs interpretabilidade.
+
+### Modelos Avaliados
+
+| Modelo | Tipo | Performance | Interpretabilidade |
+|--------|------|-------------|-------------------|
+| **XGBoost + SHAP** | Gradient Boosting | Boa | Excelente |
+| **TabPFN** | Transformer pre-treinado | Excelente | Limitada |
+| **MITRA** (AutoGluon) | Foundation Model | State-of-the-art | Limitada |
+
+### Trade-off: Performance vs Explicabilidade
+
+> **Importante**: Em credit scoring, a **explicabilidade é requisito regulatório** (LGPD, BACEN).
+
+| Cenário | Modelo Recomendado |
+|---------|-------------------|
+| Produção (regulado) | XGBoost + SHAP |
+| Prototipo/PoC | TabPFN/MITRA |
+| Benchmark interno | Comparar todos |
+
+Para detalhes, veja: `notebooks/05_foundation_models.ipynb`
+
+
+
 ## Instalação
 
 ```bash
@@ -115,6 +141,7 @@ poetry run jupyter notebook
 # 2. 02_modeling.ipynb - Modelagem com Optuna
 # 3. 03_interpretability.ipynb - Análise SHAP
 # 4. 04_fairness.ipynb - Detecção de viés
+# 5. 05_foundation_models.ipynb - TabPFN/MITRA
 ```
 
 ---
