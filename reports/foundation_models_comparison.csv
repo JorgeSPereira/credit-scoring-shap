@@ -1,0 +1,2 @@
+Model,ROC-AUC,F1-Score,Precision,Recall,Interpretable
+XGBoost (Optuna),0.8058333333333333,0.6575342465753424,0.5581395348837209,0.8,Sim (SHAP)

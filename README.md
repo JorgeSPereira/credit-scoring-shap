@@ -37,6 +37,97 @@ A concessão de crédito é uma das decisões mais críticas em instituições f
 
 ---
 
+## Arquitetura do Pipeline
+
+```mermaid
+flowchart LR
+    subgraph Data["📊 Data"]
+        A[German Credit Dataset] --> B[Pandera Validation]
+    end
+    
+    subgraph Training["🔧 Training"]
+        B --> C[Feature Engineering]
+        C --> D[Optuna HPO]
+        D --> E[XGBoost/LightGBM]
+    end
+    
+    subgraph Tracking["📈 MLOps"]
+        E --> F[MLflow Tracking]
+        F --> G[Model Registry]
+    end
+    
+    subgraph Deploy["🚀 Deploy"]
+        G --> H[FastAPI]
+        H --> I["/predict endpoint"]
+    end
+    
+    subgraph Analysis["🔍 Analysis"]
+        E --> J[SHAP Interpretability]
+        E --> K[Fairness Analysis]
+    end
+```
+
+---
+
+## Fluxo de Decisão de Crédito
+
+```mermaid
+flowchart TD
+    A["🧑 Cliente solicita crédito"] --> B["📝 Dados coletados"]
+    B --> C["⚙️ Preprocessamento"]
+    C --> D["🤖 Modelo XGBoost"]
+    D --> E{"P(default) > threshold?"}
+    
+    E -->|Sim| F["❌ Crédito Negado"]
+    E -->|Não| G["✅ Crédito Aprovado"]
+    
+    D --> H["🔍 SHAP Explanation"]
+    H --> I["📋 Justificativa para cliente"]
+    
+    F --> J["📊 Fairness Monitoring"]
+    G --> J
+```
+
+---
+
+## Análise de Fairness
+
+```mermaid
+flowchart LR
+    subgraph Input["Dados"]
+        A[Predições do Modelo]
+        B[Atributos Sensíveis]
+    end
+    
+    subgraph Metrics["Métricas Fairlearn"]
+        C[Demographic Parity]
+        D[Equalized Odds]
+        E[Selection Rate]
+    end
+    
+    subgraph Output["Resultado"]
+        F{Viés detectado?}
+        G["✅ Fair"]
+        H["⚠️ Mitigação necessária"]
+    end
+    
+    A --> C
+    B --> C
+    A --> D
+    B --> D
+    A --> E
+    B --> E
+    
+    C --> F
+    D --> F
+    E --> F
+    
+    F -->|Não| G
+    F -->|Sim| H
+```
+
+
+
 ## Resultados
 
 | Modelo | ROC-AUC | Precision | Recall | F1-Score |
